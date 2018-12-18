@@ -5,17 +5,25 @@ import {applyMiddleware, compose, createStore} from 'redux'
 import {createReactNavigationReduxMiddleware, reduxifyNavigator} from 'react-navigation-redux-helpers'
 import RootReducer from './reducers/RootReducer'
 import AppNavigator from './components/AppNavigator'
+import TopNavigator from '../source/Top/TopNavigator'
+import BottomNavigator from '../source/Bottom/BottomNavigator'
 
 const middleware = createReactNavigationReduxMiddleware('root', state => state.nav)
-const App = reduxifyNavigator(AppNavigator, 'root')
+const Container = reduxifyNavigator(AppNavigator, 'root')
 const mapStateToProps = state => ({
-    state: state.nav,
+    state: state.nav
 })
-const AppWithNavigationState = connect(mapStateToProps)(App)
+const AppWithNavigationState = connect(mapStateToProps)(Container)
+
+const Top = reduxifyNavigator(TopNavigator, 'root')
+const Bottom = reduxifyNavigator(BottomNavigator, 'root')
+
+const BottomWithNavigationState = connect(mapStateToProps)(Bottom)
+const TopWithNavigationState = connect(mapStateToProps)(Top)
 
 const store = createStore(
     RootReducer,
     compose(applyMiddleware(middleware, thunk, logger)),
 )
 
-export {store, AppWithNavigationState}
+export {store, AppWithNavigationState, BottomWithNavigationState, TopWithNavigationState}

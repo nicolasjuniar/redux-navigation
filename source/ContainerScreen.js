@@ -3,24 +3,28 @@ import {View, Button} from 'react-native'
 import TopNavigator from './Top/TopNavigator'
 import BottomNavigator from './Bottom/BottomNavigator'
 import TopScreen from "./Top/TopScreen";
+import {BottomWithNavigationState, TopWithNavigationState, store} from '../src/Store'
+import {Provider} from 'react-redux'
+
 
 export default class ContainerScreen extends Component {
     static navigationOptions = {
         header: null
     }
 
-    clickButton() {
-        // this.refs.bottom.goToSecondBottom()
-       this.refs.top.ikiMethod()
-    }
-
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'column'}}>
-                <Button title={'aaaa'}
-                        onPress={() => this.clickButton()}/>
-                <View style={{flex: 1}}><TopNavigator ref={'top'}/></View>
-                <View style={{flex: 1}}><BottomNavigator ref={'bottom'}/></View>
+                <View style={{flex: 1}}>
+                    <Provider store={store}>
+                        <TopWithNavigationState/>
+                    </Provider>
+                </View>
+                <View style={{flex: 1}}>
+                    <Provider store={store}>
+                        <BottomWithNavigationState/>
+                    </Provider>
+                </View>
             </View>
 
         )

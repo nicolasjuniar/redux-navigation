@@ -6,6 +6,8 @@ const topNavigator=createStackNavigator({
     top:{
         screen: TopScreen
     }
+},{
+    initialRouteName: 'top'
 })
 
 export default topNavigator

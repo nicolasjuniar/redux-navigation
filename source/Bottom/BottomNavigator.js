@@ -3,13 +3,15 @@ import {createStackNavigator} from 'react-navigation'
 import BottomScreen from "./BottomScreen";
 import SecondBottomScreen from "./SecondBottomScreen";
 
-const bottomNavigator =  createStackNavigator({
+const bottomNavigator = createStackNavigator({
     bottom: {
-        screen:BottomScreen
+        screen: BottomScreen
     },
     secondBottom: {
         screen: SecondBottomScreen
     }
+}, {
+    initialRouteName: 'bottom'
 })
 
 export default bottomNavigator

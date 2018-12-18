@@ -1,18 +1,26 @@
 import React,{Component} from 'react'
 import {View,Text,Button} from 'react-native'
+import connect from "react-redux/es/connect/connect";
 
-export default class BottomScreen extends Component{
+class BottomScreen extends Component{
 
     goToSecondBottom=()=>{
         this.props.navigation.navigate('secondBottom')
     }
 
     render(){
+        const {colorName}= this.props
         return(
-            <View>
+            <View style={{backgroundColor:colorName}}>
                 <Text>aaaa</Text>
                 <Button title={'pencet aku dung'} onPress={this.goToSecondBottom}/>
             </View>
         )
     }
 }
+
+const mapStateToProps = state => {
+    return { colorName: state.color.colorName };
+};
+
+export default connect(mapStateToProps)(BottomScreen);

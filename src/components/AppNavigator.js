@@ -2,10 +2,11 @@ import React from 'react'
 import {createStackNavigator} from 'react-navigation'
 import MainPage from "./MainPage";
 import ChooseColorPage from "./ChooseColorPage";
+import ContainerScreen from "../../source/ContainerScreen";
 
 const appNavigator = createStackNavigator({
     main: {
-        screen: MainPage
+        screen: ContainerScreen
     },
     chooseColor: {
         screen: ChooseColorPage
